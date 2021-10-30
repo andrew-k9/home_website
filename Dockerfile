@@ -1,8 +1,10 @@
 FROM ruby:3.0.2
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+RUN apt-get update -qq && apt-get install -y nodejs yarn postgresql-client
 WORKDIR /home
-COPY . /home
+COPY Gemfile Gemfile.lock ./
+RUN gem install bundler
 RUN bundle install
+COPY . .
 
 # Add a script to be executed every time the container starts.
 COPY docker/entrypoint.sh /usr/bin/

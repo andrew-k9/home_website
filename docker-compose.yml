@@ -12,7 +12,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: app.Dockerfile
+      dockerfile: Dockerfile
     command: bash -c "bundle exec puma -C config/puma.rb"
     volumes:
       - .:/app
